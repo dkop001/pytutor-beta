@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+  /* Remove nav bar for lesson mode */
+  .top-nav { display: none; }
+  body { background-color: var(--bg-color); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="lesson-container">
+  <div class="lesson-top-bar">
+    <a href="/" class="close-btn"><i class="fa-solid fa-xmark"></i></a>
+    <div class="progress-bar-container">
+      <!-- Let's just mock 50% for now -->
+      <div class="progress-bar-fill" style="width: {{ progress * 100 }}%;"></div>
+    </div>
+    <div style="color: var(--red); font-weight: bold; font-size: 18px;">
+      <i class="fa-solid fa-heart"></i> {{ user.hearts }}
+    </div>
+  </div>
+
+  <div class="question-area">
+    <h1>{{ lesson.title }}</h1>
+    <p class="question-prompt">{{ question.prompt }}</p>
+
+    <!-- Question type handling (multiple choice) -->
+    <div class="options-grid">
+      {% for idx, opt in options_with_idx %}
+        <div class="option-card" data-id="{{ idx }}">
+          <div style="width: 30px; height: 30px; min-width: 30px; flex-shrink: 0; border-radius: 8px; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--text-light);">{{ idx + 1 }}</div>
+          <div style="flex: 1; min-width: 0; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word;">{{ opt }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="bottom-footer" id="bottom-footer">
+  <div class="footer-content">
+    <!-- Empty div for flex spacing or skip button -->
+    <button class="btn btn-outline" style="border: none; box-shadow: none; color: var(--text-light); text-transform: uppercase;">Skip</button>
+    
+    <div id="feedback-msg" class="feedback-msg"></div>
+
+    <button id="check-btn" class="btn btn-primary" disabled>Check</button>
+    <button id="next-btn" class="btn btn-primary" style="display: none;">Continue</button>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Pass the lesson ID and question index to external JS
+  window.lessonId = {{ lesson.id }};
+  window.questionIdx = {{ question_idx }};
+</script>
+{% endblock %}

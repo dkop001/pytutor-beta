@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="top-nav">
+  <div>
+    <!-- Logo or Home icon -->
+    <a href="/" style="text-decoration: none; font-size: 24px; font-weight: 900; color: var(--primary-color);">pyTutor</a>
+  </div>
+  <div class="nav-stats">
+    <div class="stat-item streak">
+      <i class="fa-solid fa-fire"></i> {{ user.streak }}
+    </div>
+    <div class="stat-item gems">
+      <i class="fa-solid fa-gem"></i> {{ user.xp }}
+    </div>
+    <div class="stat-item hearts">
+      <i class="fa-solid fa-heart"></i> {{ user.hearts }}
+    </div>
+  </div>
+</div>
+
+<div class="path-container">
+  {% for unit in units %}
+    <div class="unit-header">
+      <div>
+        <h2>Unit {{ unit.id }}: {{ unit.title }}</h2>
+        <p>{{ unit.description }}</p>
+      </div>
+      <div>
+        <a href="/notes" class="btn btn-outline" style="background: transparent; color: white; border-color: white;">Guidebook</a>
+      </div>
+    </div>
+
+    <div class="node-container">
+      {% for lesson in unit.lessons %}
+        <div class="node-row" style="display: flex; justify-content: center; width: 100%;">
+          {% if lesson.status == "completed" %}
+            <a href="/lesson/{{ lesson.id }}" class="lesson-node" style="box-shadow: 0 6px 0 var(--hover-green), 0 0 0 8px #ffc800;">
+              <i class="fa-solid fa-star" style="color: #ffc800; font-size: 30px;"></i>
+            </a>
+          {% elif lesson.status == "active" %}
+            <a href="/lesson/{{ lesson.id }}" class="lesson-node">
+              <i class="fa-solid fa-play" style="color: white; font-size: 24px;"></i>
+            </a>
+          {% else %}
+            <div class="lesson-node locked">
+              <i class="fa-solid fa-lock" style="color: #afafaf; font-size: 24px;"></i>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <br><br><br>
+  {% endfor %}
+</div>
+{% endblock %}

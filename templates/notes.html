@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+  .notes-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  .notes-header {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .notes-header h1 {
+    font-size: 36px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+  }
+  
+  .concept-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  
+  .concept-card h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .concept-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+  
+  pre {
+    background: #1e1e2f;
+    color: #cdd6f4;
+    padding: 16px;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="top-nav">
+  <div>
+    <a href="/" style="text-decoration: none; font-size: 24px; font-weight: 900; color: var(--primary-color);">pyTutor</a>
+  </div>
+  <div class="nav-stats">
+    <a href="/" class="btn btn-outline" style="padding: 8px 16px; font-size: 14px;">Back to Path</a>
+  </div>
+</div>
+
+<div class="notes-container">
+  <div class="notes-header">
+    <h1><i class="fa-solid fa-book"></i> Python Guidebook</h1>
+    <p style="color: var(--text-light); font-size: 18px;">Your cheat sheet for concepts learned so far.</p>
+  </div>
+
+  <div class="concept-card">
+    <h2><i class="fa-solid fa-terminal" style="color: var(--blue);"></i> Printing Basics</h2>
+    <p>The <code>print()</code> function is used to output data to the standard output device (your screen).</p>
+    <pre><code>print("Hello, World!")
+print(5 + 5)</code></pre>
+  </div>
+
+  <div class="concept-card">
+    <h2><i class="fa-solid fa-box" style="color: #ff9600;"></i> Variables</h2>
+    <p>Variables act as containers to store data values. In Python, a variable is created the moment you first assign a value to it.</p>
+    <pre><code>name = "Alice"
+age = 25
+is_student = True</code></pre>
+  </div>
+
+  <div class="concept-card">
+    <h2><i class="fa-solid fa-calculator" style="color: var(--red);"></i> Math Operations</h2>
+    <p>Python supports standard mathematical operations like addition, subtraction, multiplication, and division.</p>
+    <pre><code>addition = 5 + 3        # 8
+subtraction = 10 - 2    # 8
+multiplication = 4 * 2  # 8
+division = 16 / 2       # 8.0
+exponentiation = 3 ** 2 # 9</code></pre>
+  </div>
+
+  <div class="concept-card">
+    <h2><i class="fa-solid fa-list" style="color: var(--primary-color);"></i> Lists</h2>
+    <p>Lists are used to store multiple items in a single variable. They are created using square brackets.</p>
+    <pre><code>fruits = ["apple", "banana", "cherry"]
+print(fruits[0]) # Output: apple</code></pre>
+  </div>
+
+  <div class="concept-card">
+    <h2><i class="fa-solid fa-rotate-right" style="color: var(--blue);"></i> Loops</h2>
+    <p>Loops are used to repeat a block of code. Python has <code>for</code> loops and <code>while</code> loops.</p>
+    <pre><code># For loop
+for i in range(3):
+    print(i) # Outputs 0, 1, 2
+
+# While loop
+x = 0
+while x < 3:
+    print(x)
+    x += 1</code></pre>
+  </div>
+</div>
+{% endblock %}
