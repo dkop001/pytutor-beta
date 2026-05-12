@@ -69,11 +69,4 @@ saas/
 ### `static/css/styles.css`
 **Purpose**: Defines your custom Indigo/Violet Gamified aesthetics.
 - **`:root { ... }` block**: Every color inside the app pulls from these global root variables. 
-- **How to Edit**: If you want to re-brand the site down the line (e.g. from Indigo to Dark Mode or Crimson Red), you **only** need to edit the color variables on Line `1` to `14`. The entire site will universally adapt to the new palette. You don't have to manually hunt down Hex codes anymore. 
-
-## 🚀 Scaling Protocol (Summary)
-When you are ready to publish and onboard real users:
-1. Setup a MySQL database instance.
-2. Spin up `SQLAlchemy` in `database.py` to map properties directly to SQL Rows.
-3. Migrate configurations from `data.py` directly into the database.
-4. Scale your question architectures!
+- **How to Edit**: If you want to re-brand the site down the line (e.g. from Indigo to Dark Mode or Crimson Red), you **only** need to edit the color variables on Line `1` to `14`. The entire site will universally adapt to the new palette. 
