@@ -11,18 +11,21 @@ DEFAULT_USER_TEMPLATE = {
 }
 
 def init_db(app):
-    """
-    Initialize the DB connection on boot.
-    """
     url = os.environ.get("SUPABASE_URL")
     key = os.environ.get("SUPABASE_KEY")
-    
-    # If keys are missing, we still continue to avoid crashing immediately,
-    # but actual DB operations will fail.
+
+    print("SUPABASE_URL exists:", bool(url))
+    print("SUPABASE_KEY exists:", bool(key))
+
     if url and key:
-        app.supabase = create_client(url, key)
+        try:
+            app.supabase = create_client(url, key)
+            print("Supabase connected successfully")
+        except Exception as e:
+            print("Supabase connection failed:", e)
+            app.supabase = None
     else:
-        print("WARNING: Supabase URL or Key not found in environment!")
+        print("WARNING: Supabase URL or Key missing!")
         app.supabase = None
 
 def get_user(user_id):
